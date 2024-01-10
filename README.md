@@ -1,2 +1,1 @@
-# Sports-renderer
-Renderer for BallSkills.Info
+# Renderer for BallSkills.Info
