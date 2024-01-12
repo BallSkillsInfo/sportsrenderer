@@ -1,1 +1,2 @@
-# Renderer for BallSkills.Info
+# Path-traced renderer for BallSkills.Info
+
