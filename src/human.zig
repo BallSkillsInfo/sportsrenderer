@@ -11,15 +11,24 @@ const LowerBack = packed struct {};
 const Neck = packed struct {};
 const UpperBack = packed struct {};
 
-const Body = packed struct {
+const Torso = packed struct {
     abdomen: Abdomen,
-    arm: Arm,
     chest: Chest,
+    lower_back: LowerBack,
+    upper_back: UpperBack,
+};
+
+const Limbs = packed struct {
+    arm: Arm,
     foot: Foot,
     hand: Hand,
-    head: Head,
     leg: Leg,
-    lower_back: LowerBack,
+};
+
+const Body = packed struct {
+    head: Head,
+    left_side: Limbs,
     neck: Neck,
-    upper_back: UpperBack,
+    right_side: Limbs,
+    torso: Torso,
 };
