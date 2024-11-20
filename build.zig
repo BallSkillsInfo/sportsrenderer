@@ -3,12 +3,14 @@ const std = @import("std");
 pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
+    const zmath = b.dependency("zmath", .{});
     const exe = b.addExecutable(.{
         .name = "zigzag",
-        .root_source_file = .{ .path = "src/main.zig" },
+        .root_source_file = b.path("src/main.zig"),
         .target = target,
         .optimize = optimize,
     });
+    exe.root_module.addImport("zmath", zmath.module("root"));
     b.installArtifact(exe);
     const run_cmd = b.addRunArtifact(exe);
     run_cmd.step.dependOn(b.getInstallStep());
@@ -18,7 +20,7 @@ pub fn build(b: *std.Build) void {
     const run_step = b.step("run", "Run the app");
     run_step.dependOn(&run_cmd.step);
     //const unit_tests = b.addTest(.{
-    //  .root_source_file = .{ .path = "test/main.zig" },
+    //  .root_source_file = b.path("test/main.zig"),
     //  .target = target,
     //  .optimize = optimize,
     //});
